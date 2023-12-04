@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Atividades{% endblock %}
+
+{% block header %}Adicionar Atividade{% endblock %}
+
+{% block content %}
+   <form method="post">
+      {% csrf_token %}
+      <div class="form-group mb-2">
+         <label for="name">Atividade:</label>
+         <input type="text" class="form-control" id="name" name="name" placeholder="Nova Atividade">
+      </div>
+
+      <div class="form-group">
+         <label for="name">Tempo gasto:</label>
+      <div class="row mb-2 ">
+         <div class="col">
+            <input type="number" class="form-control" id="hours_spent" name="hours_spent" min="0" placeholder="Horas">
+         </div>
+
+         <div class="col">
+            <input type="number" class="form-control" id="minutes_spent" name="minutes_spent" min="0" max="60" placeholder="Minutos">
+         </div>
+      </div>
+      </div>
+      <button type="submit" class="btn btn-outline-secondary bg-warning text-dark">Adicionar</button>
+   </form>
+
+   
+      <!-- <div class="input-group mb-3 justify-content-center">
+      
+      <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="text" class="form-control mb-2" id="name" placeholder="Atividade" aria-label="atividade" required>
+      <input type="number" class="form-control mb-2" id="time_spent" placeholder="Tempo gasto" aria-label="tempo gasto">
+      <button class="btn btn-outline-secondary bg-warning text-dark" type="submit" id="button-addon2">Adicionar</button>
+      </form>
+   </div> -->
+
+ <!-- <h2>{{ title }}</h2>
+ <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+ </form> -->
+{% endblock %}
+

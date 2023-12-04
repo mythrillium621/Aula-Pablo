@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Gerenciador de Atividades{% endblock %}
+
+{% block header %}Gerenciador de Atividades{% endblock %}
+
+{% block content %}
+ <h2>Atividades</h2>
+ <a href="{% url 'activity_new' %}">Nova Atividade</a>
+ <ul>
+    {% for activity in activities %}
+      <li>
+        <strong>{{ activity.name }}</strong> - {{ activity.hours_spent }} horas e {{ activity.minutes_spent }} minutos
+        <a href="{% url 'activity_edit' activity.id %}">Edit</a>
+      </li>
+    {% endfor %}
+ </ul>
+{% endblock %}
+
+<!-- <table class="table table-light border border-1 border-dark">
+  <tbody>
+    {% for Item in itens %}
+    <tr>
+      <th scope="row">{{Item.item}}</th>
+      <td>{{Item.nome}}</td>
+      <td>{{Item.quantidade}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table> -->
