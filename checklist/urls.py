@@ -22,3 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('lista/', include('lista.urls')),
 ]
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('activities/', include('activities.urls')),
+# ]
