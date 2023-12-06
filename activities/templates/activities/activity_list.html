@@ -5,26 +5,35 @@
 {% block header %}Gerenciador de Atividades{% endblock %}
 
 {% block content %}
- <h2>Atividades</h2>
- <a href="{% url 'activity_new' %}">Nova Atividade</a>
- <ul>
-    {% for activity in activities %}
-      <li>
-        <strong>{{ activity.name }}</strong> - {{ activity.hours_spent }} horas e {{ activity.minutes_spent }} minutos
-        <a href="{% url 'activity_edit' activity.id %}">Edit</a>
-      </li>
-    {% endfor %}
- </ul>
+ <h2>{% block action %}Atividades{% endblock %}</h2>
+ <table class="table table-light border border-1 border-dark h-auto">
+    <thead>
+        <tr>
+            <th scope="col">Atividade</th>
+            <th scope="col">Tempo investido</th>
+            <th scope="col">Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activity in activities %}
+        <tr>
+            <td class="fst-italic">{{activity.name}}</td>
+            <td>{{activity.hours_spent}}h {{ activity.minutes_spent }}min</td>
+            <td>
+                <a href="{% url 'activity_edit' activity.id %}">
+                    <button id="add"><i class="bi bi-trash"></i>Edit</button>
+                </a>
+                
+                <a href="{% url 'activity_delete' activity.id %}">
+                    <button id="add"><i class="bi bi-trash"></i>Del</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"><a href="{% url 'activity_new' %}">Nova Atividade</a></td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}
 
-<!-- <table class="table table-light border border-1 border-dark">
-  <tbody>
-    {% for Item in itens %}
-    <tr>
-      <th scope="row">{{Item.item}}</th>
-      <td>{{Item.nome}}</td>
-      <td>{{Item.quantidade}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table> -->
