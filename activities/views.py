@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect
 from .models import Activity
 from .forms import ActivityForm
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
 
 def activity_list(request):
     activities = Activity.objects.all()
@@ -40,15 +42,9 @@ def activity_new(request):
     }
     return render(request, 'activities/activity_form.html', context)
 
-def activity_delete(request, id):
-    activity = Activity.objects.get(id=id)
-
-    if request.method == 'POST':
-        activity.delete()
-        # messages.success(request, f'Atividade "{activity.name}" deletada com sucesso!')
-        return redirect('activity_list')
-
-
-    # return render(request, 'activities/activity_delete.html', context)
+class ActivityDelete(DeleteView):
+    model = Activity
+    fields = ['name', 'hours_spent', 'minutes_spent']
+    success_url = reverse_lazy("activity_list")
 
 
