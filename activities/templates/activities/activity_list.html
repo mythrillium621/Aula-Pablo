@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Gerenciador de Atividades{% endblock %}
+
+{% block header %}Gerenciador de Atividades{% endblock %}
+
+{% block content %}
+ <h2>{% block action %}Atividades{% endblock %}</h2>
+ <table class="table table-light border border-1 border-dark">
+    <thead>
+        <tr>
+            <th scope="col" class="w-25">Atividade</th>
+            <th scope="col">Tempo investido</th>
+            <th scope="col" class="w-25">Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activity in activities %}
+        <tr>
+            <td class="fst-italic">{{activity.name}}</td>
+            <td>{{activity.hours_spent}}h {{ activity.minutes_spent }}min</td>
+            <td>
+                <a href="{% url 'activity_edit' activity.id %}" class="btn btn-warning"">Editar</a>
+                
+                <a href="{% url 'activity_delete' pk=activity.id %}" class="btn btn-secondary">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'activity_new' %}" class="btn btn-warning">Nova Atividade</a></td>  
+{% endblock %}
+

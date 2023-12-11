@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block header %}Gerenciador de Atividades{% endblock %}
+
+{% block content %}
+   <form method="post" class="position-absolute top-50 start-50 translate-middle">
+      <h2>{% block action %}{{title}}{% endblock %}</h2>
+      {% csrf_token %}
+      <div class="form-group mb-2">
+         <label for="name">Atividade:</label>
+         <input type="text" class="form-control" id="name" name="name" placeholder="Nova Atividade" value="{% block name %}{{name}}{% endblock %}">
+      </div>
+
+      <div class="form-group">
+         <label for="name">Tempo gasto:</label>
+      <div class="row mb-2 ">
+         <div class="col">
+            <input type="number" class="form-control" id="hours_spent" name="hours_spent" min="0" placeholder="Horas" value="{% block hours %}{{hours}}{% endblock %}">
+         </div>
+
+         <div class="col">
+            <input type="number" class="form-control" id="minutes_spent" name="minutes_spent" min="0" max="59" placeholder="Minutos" value="{% block minutes %}{{minutes}}{% endblock %}">
+         </div>
+      </div>
+      </div>
+      <button type="submit" class="btn btn-outline-secondary bg-warning text-dark">{% block button %}{{button}}{% endblock %}</button>
+   </form>
+
+{% endblock %}
+
